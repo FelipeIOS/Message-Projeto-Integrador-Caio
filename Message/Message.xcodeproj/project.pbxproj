@@ -22,6 +22,8 @@
 		0404C57325DAE8C700AE3C05 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0404C56925DAE8C700AE3C05 /* Poppins-SemiBold.ttf */; };
 		0404C57425DAE8C700AE3C05 /* send.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0404C56B25DAE8C700AE3C05 /* send.wav */; };
 		0404C57525DAE8C700AE3C05 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404C56C25DAE8C700AE3C05 /* Button.swift */; };
+		0404C57925DAEDD000AE3C05 /* HomeMessageScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404C57825DAEDD000AE3C05 /* HomeMessageScreen.swift */; };
+		0404C57E25DAEF3800AE3C05 /* MessageListNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404C57D25DAEF3800AE3C05 /* MessageListNavigationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		0404C56925DAE8C700AE3C05 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		0404C56B25DAE8C700AE3C05 /* send.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = send.wav; sourceTree = "<group>"; };
 		0404C56C25DAE8C700AE3C05 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		0404C57825DAEDD000AE3C05 /* HomeMessageScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMessageScreen.swift; sourceTree = "<group>"; };
+		0404C57D25DAEF3800AE3C05 /* MessageListNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListNavigationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				0404C56125DAE8C700AE3C05 /* Utilities */,
+				0404C57C25DAEF1700AE3C05 /* View */,
+				0404C57725DAED5700AE3C05 /* ScreenHomeMessage */,
 				0404C55F25DAE86A00AE3C05 /* Controller */,
 				0404C54425DAE50300AE3C05 /* AppDelegate.swift */,
 				0404C54625DAE50300AE3C05 /* SceneDelegate.swift */,
@@ -124,6 +130,22 @@
 				0404C56B25DAE8C700AE3C05 /* send.wav */,
 			);
 			path = Sound;
+			sourceTree = "<group>";
+		};
+		0404C57725DAED5700AE3C05 /* ScreenHomeMessage */ = {
+			isa = PBXGroup;
+			children = (
+				0404C57825DAEDD000AE3C05 /* HomeMessageScreen.swift */,
+			);
+			path = ScreenHomeMessage;
+			sourceTree = "<group>";
+		};
+		0404C57C25DAEF1700AE3C05 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0404C57D25DAEF3800AE3C05 /* MessageListNavigationView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +229,8 @@
 				0404C54725DAE50300AE3C05 /* SceneDelegate.swift in Sources */,
 				0404C57025DAE8C700AE3C05 /* String.swift in Sources */,
 				0404C57525DAE8C700AE3C05 /* Button.swift in Sources */,
+				0404C57925DAEDD000AE3C05 /* HomeMessageScreen.swift in Sources */,
+				0404C57E25DAEF3800AE3C05 /* MessageListNavigationView.swift in Sources */,
 				0404C56E25DAE8C700AE3C05 /* structure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
