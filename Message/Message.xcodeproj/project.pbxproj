@@ -28,6 +28,7 @@
 		0443F24F25DC065800C76A17 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443F24E25DC065800C76A17 /* CustomImageView.swift */; };
 		0443F3D825E178AC00C76A17 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443F3D725E178AC00C76A17 /* ChatViewController.swift */; };
 		0443F3DD25E1795C00C76A17 /* ChatNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443F3DC25E1795C00C76A17 /* ChatNavigationView.swift */; };
+		0443F3E325E17C1D00C76A17 /* IncomingTextMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443F3E225E17C1D00C76A17 /* IncomingTextMessageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		0443F24E25DC065800C76A17 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		0443F3D725E178AC00C76A17 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		0443F3DC25E1795C00C76A17 /* ChatNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNavigationView.swift; sourceTree = "<group>"; };
+		0443F3E225E17C1D00C76A17 /* IncomingTextMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingTextMessageTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 		0404C57C25DAEF1700AE3C05 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0443F3E025E17BCA00C76A17 /* ChatMessage */,
 				0443F3DB25E1793000C76A17 /* ChatView */,
 				0443F24D25DC063100C76A17 /* CustomImageView */,
 				0443F24525DC035500C76A17 /* MessageListCollectionViewCell */,
@@ -198,6 +201,22 @@
 				0443F3DC25E1795C00C76A17 /* ChatNavigationView.swift */,
 			);
 			path = ChatView;
+			sourceTree = "<group>";
+		};
+		0443F3E025E17BCA00C76A17 /* ChatMessage */ = {
+			isa = PBXGroup;
+			children = (
+				0443F3E125E17BD800C76A17 /* CellIncoming */,
+			);
+			path = ChatMessage;
+			sourceTree = "<group>";
+		};
+		0443F3E125E17BD800C76A17 /* CellIncoming */ = {
+			isa = PBXGroup;
+			children = (
+				0443F3E225E17C1D00C76A17 /* IncomingTextMessageTableViewCell.swift */,
+			);
+			path = CellIncoming;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +294,7 @@
 			files = (
 				0404C56F25DAE8C700AE3C05 /* Custom.swift in Sources */,
 				0443F24725DC047E00C76A17 /* MessageListCollectionViewCell.swift in Sources */,
+				0443F3E325E17C1D00C76A17 /* IncomingTextMessageTableViewCell.swift in Sources */,
 				0443F3DD25E1795C00C76A17 /* ChatNavigationView.swift in Sources */,
 				0404C56D25DAE8C700AE3C05 /* UIView.swift in Sources */,
 				0404C54925DAE50300AE3C05 /* MessageListViewController.swift in Sources */,

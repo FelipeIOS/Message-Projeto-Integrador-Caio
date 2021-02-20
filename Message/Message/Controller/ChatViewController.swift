@@ -71,8 +71,8 @@ class ChatViewController: UIViewController {
     lazy var tableView:UITableView = {
         let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.register(IncomingTextMessageTableViewCell.self, forCellReuseIdentifier: "IncomingTextMessageTableViewCell")
-        tv.register(OutgoingTextMessageTableViewCell.self, forCellReuseIdentifier: "OutgoingTextMessageTableViewCell")
+        tv.register(IncomingTextMessageTableViewCell.self, forCellReuseIdentifier: IncomingTextMessageTableViewCell.identifier)
+//        tv.register(OutgoingTextMessageTableViewCell.self, forCellReuseIdentifier: "OutgoingTextMessageTableViewCell")
         tv.delegate = self
         tv.dataSource = self
         tv.backgroundColor = .clear
