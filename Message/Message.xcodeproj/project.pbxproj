@@ -14,7 +14,7 @@
 		0404C55125DAE50500AE3C05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0404C55025DAE50500AE3C05 /* Assets.xcassets */; };
 		0404C55425DAE50500AE3C05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0404C55225DAE50500AE3C05 /* LaunchScreen.storyboard */; };
 		0404C56D25DAE8C700AE3C05 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404C56225DAE8C700AE3C05 /* UIView.swift */; };
-		0404C56E25DAE8C700AE3C05 /* structure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404C56325DAE8C700AE3C05 /* structure.swift */; };
+		0404C56E25DAE8C700AE3C05 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404C56325DAE8C700AE3C05 /* MessageModel.swift */; };
 		0404C56F25DAE8C700AE3C05 /* Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404C56425DAE8C700AE3C05 /* Custom.swift */; };
 		0404C57025DAE8C700AE3C05 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404C56525DAE8C700AE3C05 /* String.swift */; };
 		0404C57125DAE8C700AE3C05 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0404C56725DAE8C700AE3C05 /* Poppins-Medium.ttf */; };
@@ -24,6 +24,10 @@
 		0404C57525DAE8C700AE3C05 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404C56C25DAE8C700AE3C05 /* Button.swift */; };
 		0404C57925DAEDD000AE3C05 /* HomeMessageScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404C57825DAEDD000AE3C05 /* HomeMessageScreen.swift */; };
 		0404C57E25DAEF3800AE3C05 /* MessageListNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404C57D25DAEF3800AE3C05 /* MessageListNavigationView.swift */; };
+		0443F24725DC047E00C76A17 /* MessageListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443F24625DC047E00C76A17 /* MessageListCollectionViewCell.swift */; };
+		0443F24F25DC065800C76A17 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443F24E25DC065800C76A17 /* CustomImageView.swift */; };
+		0443F3D825E178AC00C76A17 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443F3D725E178AC00C76A17 /* ChatViewController.swift */; };
+		0443F3DD25E1795C00C76A17 /* ChatNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443F3DC25E1795C00C76A17 /* ChatNavigationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +40,7 @@
 		0404C55325DAE50500AE3C05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0404C55525DAE50500AE3C05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0404C56225DAE8C700AE3C05 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
-		0404C56325DAE8C700AE3C05 /* structure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = structure.swift; sourceTree = "<group>"; };
+		0404C56325DAE8C700AE3C05 /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		0404C56425DAE8C700AE3C05 /* Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Custom.swift; sourceTree = "<group>"; };
 		0404C56525DAE8C700AE3C05 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		0404C56725DAE8C700AE3C05 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
@@ -46,6 +50,10 @@
 		0404C56C25DAE8C700AE3C05 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		0404C57825DAEDD000AE3C05 /* HomeMessageScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMessageScreen.swift; sourceTree = "<group>"; };
 		0404C57D25DAEF3800AE3C05 /* MessageListNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListNavigationView.swift; sourceTree = "<group>"; };
+		0443F24625DC047E00C76A17 /* MessageListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListCollectionViewCell.swift; sourceTree = "<group>"; };
+		0443F24E25DC065800C76A17 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		0443F3D725E178AC00C76A17 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		0443F3DC25E1795C00C76A17 /* ChatNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNavigationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				0404C56125DAE8C700AE3C05 /* Utilities */,
+				0443F24A25DC04E900C76A17 /* Model */,
 				0404C57C25DAEF1700AE3C05 /* View */,
 				0404C57725DAED5700AE3C05 /* ScreenHomeMessage */,
 				0404C55F25DAE86A00AE3C05 /* Controller */,
@@ -96,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				0404C54825DAE50300AE3C05 /* MessageListViewController.swift */,
+				0443F3D725E178AC00C76A17 /* ChatViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -104,12 +114,11 @@
 			isa = PBXGroup;
 			children = (
 				0404C56225DAE8C700AE3C05 /* UIView.swift */,
-				0404C56325DAE8C700AE3C05 /* structure.swift */,
 				0404C56425DAE8C700AE3C05 /* Custom.swift */,
 				0404C56525DAE8C700AE3C05 /* String.swift */,
+				0404C56C25DAE8C700AE3C05 /* Button.swift */,
 				0404C56625DAE8C700AE3C05 /* Fonts */,
 				0404C56A25DAE8C700AE3C05 /* Sound */,
-				0404C56C25DAE8C700AE3C05 /* Button.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -143,9 +152,52 @@
 		0404C57C25DAEF1700AE3C05 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0404C57D25DAEF3800AE3C05 /* MessageListNavigationView.swift */,
+				0443F3DB25E1793000C76A17 /* ChatView */,
+				0443F24D25DC063100C76A17 /* CustomImageView */,
+				0443F24525DC035500C76A17 /* MessageListCollectionViewCell */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0443F24525DC035500C76A17 /* MessageListCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0443F3D625E1785500C76A17 /* ListNavigation */,
+				0443F24625DC047E00C76A17 /* MessageListCollectionViewCell.swift */,
+			);
+			path = MessageListCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		0443F24A25DC04E900C76A17 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0404C56325DAE8C700AE3C05 /* MessageModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0443F24D25DC063100C76A17 /* CustomImageView */ = {
+			isa = PBXGroup;
+			children = (
+				0443F24E25DC065800C76A17 /* CustomImageView.swift */,
+			);
+			path = CustomImageView;
+			sourceTree = "<group>";
+		};
+		0443F3D625E1785500C76A17 /* ListNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				0404C57D25DAEF3800AE3C05 /* MessageListNavigationView.swift */,
+			);
+			path = ListNavigation;
+			sourceTree = "<group>";
+		};
+		0443F3DB25E1793000C76A17 /* ChatView */ = {
+			isa = PBXGroup;
+			children = (
+				0443F3DC25E1795C00C76A17 /* ChatNavigationView.swift */,
+			);
+			path = ChatView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +274,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0404C56F25DAE8C700AE3C05 /* Custom.swift in Sources */,
+				0443F24725DC047E00C76A17 /* MessageListCollectionViewCell.swift in Sources */,
+				0443F3DD25E1795C00C76A17 /* ChatNavigationView.swift in Sources */,
 				0404C56D25DAE8C700AE3C05 /* UIView.swift in Sources */,
 				0404C54925DAE50300AE3C05 /* MessageListViewController.swift in Sources */,
 				0404C54F25DAE50300AE3C05 /* Message.xcdatamodeld in Sources */,
@@ -230,8 +284,10 @@
 				0404C57025DAE8C700AE3C05 /* String.swift in Sources */,
 				0404C57525DAE8C700AE3C05 /* Button.swift in Sources */,
 				0404C57925DAEDD000AE3C05 /* HomeMessageScreen.swift in Sources */,
+				0443F3D825E178AC00C76A17 /* ChatViewController.swift in Sources */,
 				0404C57E25DAEF3800AE3C05 /* MessageListNavigationView.swift in Sources */,
-				0404C56E25DAE8C700AE3C05 /* structure.swift in Sources */,
+				0404C56E25DAE8C700AE3C05 /* MessageModel.swift in Sources */,
+				0443F24F25DC065800C76A17 /* CustomImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

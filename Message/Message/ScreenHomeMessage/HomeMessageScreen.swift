@@ -15,14 +15,15 @@ class HomeMessageScreen: UIView {
         return v
     }()
     
-    lazy var tableView:UITableView = {
-        let cv = UITableView()
+    lazy var collectionView:UICollectionView = {
+        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout.init())
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.showsVerticalScrollIndicator = false
-//        cv.register(MessageListCollectionViewCell.self, forCellWithReuseIdentifier: "MessageListCollectionViewCell")
+        cv.register(MessageListCollectionViewCell.self, forCellWithReuseIdentifier:MessageListCollectionViewCell.identifier )
         cv.backgroundColor = .clear
-//        cv.delegate = self
-//        cv.dataSource = self
+        cv.setCollectionViewLayout(layout, animated: false)
         cv.delaysContentTouches = false
         return cv
     }()
@@ -30,7 +31,7 @@ class HomeMessageScreen: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(navView)
-        self.addSubview(tableView)
+        self.addSubview(collectionView)
         self.setUpConstraints()
     }
     
@@ -38,7 +39,12 @@ class HomeMessageScreen: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUpConstraints(){
+    public func delegateCollectionView(controller:UIViewController){
+        self.collectionView.delegate = controller as? UICollectionViewDelegate
+        self.collectionView.dataSource = controller as? UICollectionViewDataSource
+    }
+    
+   private func setUpConstraints(){
         NSLayoutConstraint.activate([
             
             navView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -46,10 +52,10 @@ class HomeMessageScreen: UIView {
             navView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             navView.heightAnchor.constraint(equalToConstant: 140),
             
-            tableView.topAnchor.constraint(equalTo: navView.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            collectionView.topAnchor.constraint(equalTo: navView.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
     
