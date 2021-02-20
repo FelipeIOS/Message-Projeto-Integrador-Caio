@@ -72,7 +72,7 @@ class ChatViewController: UIViewController {
         let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.register(IncomingTextMessageTableViewCell.self, forCellReuseIdentifier: IncomingTextMessageTableViewCell.identifier)
-//        tv.register(OutgoingTextMessageTableViewCell.self, forCellReuseIdentifier: "OutgoingTextMessageTableViewCell")
+        tv.register(OutgoingTextMessageTableViewCell.self, forCellReuseIdentifier: OutgoingTextMessageTableViewCell.identifier)
         tv.delegate = self
         tv.dataSource = self
         tv.backgroundColor = .clear
@@ -103,7 +103,7 @@ class ChatViewController: UIViewController {
         
         //bottomconstraints
         bottomConstraint = NSLayoutConstraint(item: messageInputView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
-        view.addConstraint(bottomConstraint!)
+        view.addConstraint(bottomConstraint ?? NSLayoutConstraint())
         
         self.sendBtn.isEnabled = false
         self.sendBtn.layer.opacity = 0.4
@@ -113,44 +113,44 @@ class ChatViewController: UIViewController {
     
     func setUpConstraints(){
         NSLayoutConstraint.activate([
-            navView.topAnchor.constraint(equalTo: view.topAnchor),
-            navView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            navView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            navView.heightAnchor.constraint(equalToConstant: 140),
+            self.navView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.navView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.navView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.navView.heightAnchor.constraint(equalToConstant: 140),
             
-            tableView.topAnchor.constraint(equalTo: navView.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: messageInputView.topAnchor),
+            self.tableView.topAnchor.constraint(equalTo: self.navView.bottomAnchor),
+            self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.messageInputView.topAnchor),
             
-            messageInputView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            messageInputView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            messageInputView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            messageInputView.heightAnchor.constraint(equalToConstant: 80),
+            self.messageInputView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            self.messageInputView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.messageInputView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.messageInputView.heightAnchor.constraint(equalToConstant: 80),
             
-            messageBar.leadingAnchor.constraint(equalTo: messageInputView.leadingAnchor, constant: 20),
-            messageBar.trailingAnchor.constraint(equalTo: messageInputView.trailingAnchor, constant: -20),
-            messageBar.heightAnchor.constraint(equalToConstant: 55),
-            messageBar.centerYAnchor.constraint(equalTo: messageInputView.centerYAnchor),
+            self.messageBar.leadingAnchor.constraint(equalTo: self.messageInputView.leadingAnchor, constant: 20),
+            self.messageBar.trailingAnchor.constraint(equalTo: self.messageInputView.trailingAnchor, constant: -20),
+            self.messageBar.heightAnchor.constraint(equalToConstant: 55),
+            self.messageBar.centerYAnchor.constraint(equalTo: self.messageInputView.centerYAnchor),
             
-            sendBtn.trailingAnchor.constraint(equalTo: messageBar.trailingAnchor, constant: -15),
-            sendBtn.widthAnchor.constraint(equalToConstant: 55),
-            sendBtn.heightAnchor.constraint(equalToConstant: 55),
-            sendBtn.bottomAnchor.constraint(equalTo: messageBar.bottomAnchor, constant: -10),
+            self.sendBtn.trailingAnchor.constraint(equalTo: self.messageBar.trailingAnchor, constant: -15),
+            self.sendBtn.widthAnchor.constraint(equalToConstant: 55),
+            self.sendBtn.heightAnchor.constraint(equalToConstant: 55),
+            self.sendBtn.bottomAnchor.constraint(equalTo: self.messageBar.bottomAnchor, constant: -10),
             
-            inputMessageField.leadingAnchor.constraint(equalTo: messageBar.leadingAnchor , constant: 20),
-            inputMessageField.trailingAnchor.constraint(equalTo: sendBtn.leadingAnchor, constant: -5),
-            inputMessageField.heightAnchor.constraint(equalToConstant: 45),
-            inputMessageField.centerYAnchor.constraint(equalTo: messageBar.centerYAnchor)
+            self.inputMessageField.leadingAnchor.constraint(equalTo: self.messageBar.leadingAnchor , constant: 20),
+            self.inputMessageField.trailingAnchor.constraint(equalTo: self.sendBtn.leadingAnchor, constant: -5),
+            self.inputMessageField.heightAnchor.constraint(equalToConstant: 45),
+            self.inputMessageField.centerYAnchor.constraint(equalTo: self.messageBar.centerYAnchor)
         ])
     }
     
     @objc func backBtnPressed(){
-        navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func sendBtnPressed(){
-        sendBtn.touchAnimation(s: sendBtn)
+        self.sendBtn.touchAnimation(s: sendBtn)
         self.playSound()
         let message = Messages(messageType: "text", sentBy: "", time: "20/08/2020", image: nil, message: self.inputMessageField.text, isIncoming: false)
         self.messageData.insert(message, at: 0)
@@ -174,19 +174,19 @@ extension ChatViewController:UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if messageData[indexPath.row].messageType == "text"{
-            if messageData[indexPath.row].isIncoming == true {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "IncomingTextMessageTableViewCell", for: indexPath) as! IncomingTextMessageTableViewCell
-                cell.transform = CGAffineTransform(scaleX: 1, y: -1)
-                cell.data = messageData[indexPath.row]
-                cell.selectionStyle = .none
-                return cell
+        if self.messageData[indexPath.row].messageType == "text"{
+            if self.messageData[indexPath.row].isIncoming == true {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "IncomingTextMessageTableViewCell", for: indexPath) as? IncomingTextMessageTableViewCell
+                cell?.transform = CGAffineTransform(scaleX: 1, y: -1)
+                cell?.data = messageData[indexPath.row]
+                cell?.selectionStyle = .none
+                return cell ?? UITableViewCell()
             } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "OutgoingTextMessageTableViewCell", for: indexPath) as! OutgoingTextMessageTableViewCell
-                cell.transform = CGAffineTransform(scaleX: 1, y: -1)
-                cell.data = messageData[indexPath.row]
-                cell.selectionStyle = .none
-                return cell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "OutgoingTextMessageTableViewCell", for: indexPath) as? OutgoingTextMessageTableViewCell
+                cell?.transform = CGAffineTransform(scaleX: 1, y: -1)
+                cell?.data = messageData[indexPath.row]
+                cell?.selectionStyle = .none
+                return cell ?? UITableViewCell()
             }
         }
         return UITableViewCell()
@@ -197,7 +197,7 @@ extension ChatViewController:UITableViewDelegate, UITableViewDataSource {
             let desc = messageData[indexPath.row].message
             let font = UIFont(name: CustomFont.poppinsSemiBold, size: 14) ?? UIFont()
             let estimatedH = desc?.heightWithConstrainedWidth(width: 220, font: font)
-            return CGFloat(65 + estimatedH!)
+            return CGFloat(65 + (estimatedH ?? CGFloat()))
         }
         return CGFloat()
     }
@@ -210,7 +210,7 @@ extension ChatViewController:UITableViewDelegate, UITableViewDataSource {
 
             let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
 
-            bottomConstraint?.constant = isKeyboardShowing ? -keyboardHeight : 0
+            self.bottomConstraint?.constant = isKeyboardShowing ? -keyboardHeight : 0
 
             self.tableView.center.y = isKeyboardShowing ? self.tableView.center.y-keyboardHeight : self.tableView.center.y+keyboardHeight
 
@@ -229,8 +229,8 @@ extension ChatViewController:UITableViewDelegate, UITableViewDataSource {
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
-            guard let player = player else { return }
+            self.player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
+            guard let player = self.player else { return }
             player.play()
         } catch let error {
             print(error.localizedDescription)

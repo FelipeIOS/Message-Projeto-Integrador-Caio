@@ -53,21 +53,21 @@ extension MessageListViewController:UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
-            let cell = collectionView.cellForItem(at: indexPath) as! MessageListCollectionViewCell
-            cell.contentView.backgroundColor = UIColor(white: 0, alpha: 0.1)
+            let cell = collectionView.cellForItem(at: indexPath) as? MessageListCollectionViewCell
+            cell?.contentView.backgroundColor = UIColor(white: 0, alpha: 0.1)
         }, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
-            let cell = collectionView.cellForItem(at: indexPath) as! MessageListCollectionViewCell
-            cell.contentView.backgroundColor = .clear
+            let cell = collectionView.cellForItem(at: indexPath) as? MessageListCollectionViewCell
+            cell?.contentView.backgroundColor = .clear
         }, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let VC = ChatViewController()
-//        navigationController?.pushViewController(VC, animated: true)
+        let VC = ChatViewController()
+        navigationController?.pushViewController(VC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
