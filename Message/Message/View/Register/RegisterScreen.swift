@@ -21,10 +21,7 @@ class RegisterScreen: UIView {
         self.delegate = delegate
     }
     
-    func delegateTextFields(delegate:UITextFieldDelegate){
-        self.passwordTextField.delegate = delegate
-        self.emailTextField.delegate = delegate
-    }
+    
     
     lazy var imageAddUser:UIImageView = {
      let image = UIImageView()
@@ -60,6 +57,20 @@ class RegisterScreen: UIView {
         return tf
     }()
     
+    lazy var nameTextField:UITextField = {
+        let tf = UITextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.backgroundColor = .white
+        tf.layer.borderWidth = 1.5
+        tf.layer.cornerRadius = 7.5
+        tf.layer.borderColor = UIColor.lightGray.cgColor
+        tf.keyboardType = .emailAddress
+        tf.placeholder = "Nome"
+        tf.font = UIFont(name: CustomFont.poppinsBold, size: 14)
+        tf.textColor = .darkGray
+        return tf
+    }()
+    
     lazy var passwordTextField:UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
@@ -80,8 +91,9 @@ class RegisterScreen: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Cadastrar", for: .normal)
         button.titleLabel?.font = UIFont(name: CustomFont.poppinsBold, size: 18)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.lightGray, for: .normal)
         button.clipsToBounds = true
+        button.isEnabled = false
         button.layer.cornerRadius = 7.5
         button.backgroundColor = UIColor(red: 3/255, green: 58/255, blue: 51/255, alpha: 1.0)
         button.addTarget(self, action: #selector(self.tappedRegisterUserButton), for: .touchUpInside)
@@ -94,10 +106,17 @@ class RegisterScreen: UIView {
         self.backgroundColor = UIColor(red: 24/255, green: 117/255, blue: 104/255, alpha: 1.0)
         self.addSubview(self.imageAddUser)
         self.addSubview(self.addImageButton)
+        self.addSubview(self.nameTextField)
         self.addSubview(self.emailTextField)
         self.addSubview(self.passwordTextField)
         self.addSubview(self.registerUserButton)
         self.setUpConstraints()
+        self.configTextFields()
+    }
+    
+    func configTextFields(){
+        self.passwordTextField.delegate = self
+        self.emailTextField.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -129,21 +148,53 @@ class RegisterScreen: UIView {
             self.addImageButton.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: CGFloat(-20)),
 //            self.addImageButton.heightAnchor.constraint(equalToConstant: CGFloat(20)),
             
-            self.emailTextField.topAnchor.constraint(equalTo: self.addImageButton.bottomAnchor, constant: CGFloat(15)),
+            self.nameTextField.topAnchor.constraint(equalTo: self.addImageButton.bottomAnchor, constant: CGFloat(15)),
+            self.nameTextField.leadingAnchor.constraint(equalTo: self.addImageButton.leadingAnchor),
+            self.nameTextField.trailingAnchor.constraint(equalTo: self.addImageButton.trailingAnchor),
+            self.nameTextField.heightAnchor.constraint(equalToConstant: CGFloat(45)),
+            
+            self.emailTextField.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: CGFloat(10)),
             self.emailTextField.leadingAnchor.constraint(equalTo: self.addImageButton.leadingAnchor),
             self.emailTextField.trailingAnchor.constraint(equalTo: self.addImageButton.trailingAnchor),
-            self.emailTextField.heightAnchor.constraint(equalToConstant: CGFloat(45)),
+            self.emailTextField.heightAnchor.constraint(equalTo: self.nameTextField.heightAnchor),
             
             self.passwordTextField.topAnchor.constraint(equalTo: self.emailTextField.bottomAnchor, constant: CGFloat(10)),
             self.passwordTextField.leadingAnchor.constraint(equalTo: self.addImageButton.leadingAnchor),
             self.passwordTextField.trailingAnchor.constraint(equalTo: self.addImageButton.trailingAnchor),
-            self.passwordTextField.heightAnchor.constraint(equalTo: self.emailTextField.heightAnchor),
+            self.passwordTextField.heightAnchor.constraint(equalTo: self.nameTextField.heightAnchor),
             
             self.registerUserButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: CGFloat(10)),
             self.registerUserButton.leadingAnchor.constraint(equalTo: self.addImageButton.leadingAnchor),
             self.registerUserButton.trailingAnchor.constraint(equalTo: self.addImageButton.trailingAnchor),
-            self.registerUserButton.heightAnchor.constraint(equalTo: self.emailTextField.heightAnchor)
+            self.registerUserButton.heightAnchor.constraint(equalTo: self.nameTextField.heightAnchor)
         ])
+    }
+    
+    func validadeTextFields() -> Bool{
+        if self.emailTextField.text != "" && self.passwordTextField.text != "" && self.passwordTextField.text != ""{
+            return true
+        }else{
+            return false
+        }
+    }
+}
+
+
+extension RegisterScreen:UITextFieldDelegate{
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if self.validadeTextFields(){
+            self.registerUserButton.setTitleColor(.white, for: .normal)
+            self.registerUserButton.isEnabled = true
+        }else{
+            self.registerUserButton.setTitleColor(.lightGray, for: .normal)
+            self.registerUserButton.isEnabled = false
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
     
     

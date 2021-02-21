@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
 
     var registerScreen:RegisterScreen?
     var imagePicker:UIImagePickerController = UIImagePickerController()
-    
+    var firestore:Firestore?
     override func loadView() {
         self.registerScreen = RegisterScreen()
         self.view = registerScreen
@@ -21,6 +23,7 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.firestore = Firestore.firestore()
         self.configRegisterScreen()
         self.configImagePicker()
     }
@@ -31,7 +34,6 @@ class RegisterViewController: UIViewController {
     
     func configRegisterScreen(){
         self.registerScreen?.delegate(delegate: self)
-        self.registerScreen?.delegateTextFields(delegate: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,12 +51,67 @@ extension RegisterViewController:ActionButtonsRegisterScreenProtocol{
     
     func actionRegisterUser() {
         print(#function)
+        let email:String = self.registerScreen?.emailTextField.text ?? ""
+        let password:String = self.registerScreen?.passwordTextField.text ?? ""
+        let nome:String = self.registerScreen?.nameTextField.text ?? ""
+        
+        let autenticacao = Auth.auth()
+        autenticacao.createUser(withEmail: email, password: password) { (dadosResultado, erro) in
+            
+            if erro == nil{
+                print("Success==============")
+            //Salvar dados no firebase
+                if let idUsuario = dadosResultado?.user.uid{
+                    self.firestore?.collection("usuarios").document(idUsuario).setData([
+                        "nome": nome,
+                        "email": email,
+                        "id": idUsuario
+                    ])
+                }
+            }else{
+                let erroR = erro as NSError?
+                let erroTexto:Int = erroR?.code ?? 0
+    
+                    var mensagemErro = ""
+                    
+                    switch erroTexto {
+                        
+                    case 17008 :
+                        
+                        mensagemErro = "E-mail invalido, Digite um E-mail válido!!"
+                        
+                        break
+                        
+                    case 17026 :
+                        
+                        mensagemErro = "Senha precisa ter no mínimo 6 caracteres, com letras e numeros!!"
+                        
+                        break
+                        
+                    case 17007 :
+                        
+                        mensagemErro = "Esse e-mail já está sendo usado por outra pessoa, digite outro e-mail!!"
+                        
+                        break
+                        
+                    default:
+                        
+                        mensagemErro = "Dados digitados estão invalidos"
+                    }
+                        
+                     print(mensagemErro)
+//                    let alerta = AlertaView.init(titulo: "Dados Inválidos", mensagem: mensagemErro)
+//                    self.present(alerta.getAlerta(), animated: true, completion: nil)
+                    
+                }
+        }
+        
+        
+//        let VC = MessageListViewController()
+//        let navVC = UINavigationController(rootViewController: VC)
+//        navVC.modalPresentationStyle = .fullScreen
+//        self.present(navVC, animated: true, completion: nil)
     }
-    
-}
-
-extension RegisterViewController: UITextFieldDelegate{
-    
     
 }
 
