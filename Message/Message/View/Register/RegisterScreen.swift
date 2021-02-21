@@ -7,10 +7,24 @@
 
 import UIKit
 
+protocol ActionButtonsRegisterScreenProtocol:class{
+    func actionAlterarImagem()
+    func actionRegisterUser()
+}
+
 class RegisterScreen: UIView {
     
     var heightImageUser:CGFloat = 200
+    weak var delegate:ActionButtonsRegisterScreenProtocol?
     
+    func delegate(delegate:ActionButtonsRegisterScreenProtocol){
+        self.delegate = delegate
+    }
+    
+    func delegateTextFields(delegate:UITextFieldDelegate){
+        self.passwordTextField.delegate = delegate
+        self.emailTextField.delegate = delegate
+    }
     
     lazy var imageAddUser:UIImageView = {
      let image = UIImageView()
@@ -70,7 +84,7 @@ class RegisterScreen: UIView {
         button.clipsToBounds = true
         button.layer.cornerRadius = 7.5
         button.backgroundColor = UIColor(red: 3/255, green: 58/255, blue: 51/255, alpha: 1.0)
-        button.addTarget(self, action: #selector(self.tappedAddPhotoButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.tappedRegisterUserButton), for: .touchUpInside)
         return button
     }()
     
@@ -91,7 +105,15 @@ class RegisterScreen: UIView {
     }
     
     @objc func tappedAddPhotoButton(){
-
+        self.delegate?.actionAlterarImagem()
+    }
+    
+    @objc func tappedRegisterUserButton(){
+        self.delegate?.actionRegisterUser()
+    }
+    
+    func setImageUser(image:UIImage){
+        self.imageAddUser.image = image
     }
     
 
@@ -121,15 +143,6 @@ class RegisterScreen: UIView {
             self.registerUserButton.leadingAnchor.constraint(equalTo: self.addImageButton.leadingAnchor),
             self.registerUserButton.trailingAnchor.constraint(equalTo: self.addImageButton.trailingAnchor),
             self.registerUserButton.heightAnchor.constraint(equalTo: self.emailTextField.heightAnchor)
-//            imageAddUser.topAnchor.constraint(equalTo: self.topAnchor),
-//            imageAddUser.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            imageAddUser.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-//            imageAddUser.heightAnchor.constraint(equalToConstant: 140),
-//
-//            collectionView.topAnchor.constraint(equalTo: imageAddUser.bottomAnchor),
-//            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-//            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
     

@@ -37,7 +37,7 @@ class MessageListViewController: UIViewController {
     }
     
     private func configTableView(){
-        self.homeScreen?.delegateCollectionView(controller: self)
+        self.homeScreen?.delegateCollectionView(delegate: self, dataSource: self)
     }
 }
 

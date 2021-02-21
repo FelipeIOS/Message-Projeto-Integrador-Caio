@@ -39,9 +39,9 @@ class HomeMessageScreen: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func delegateCollectionView(controller:UIViewController){
-        self.collectionView.delegate = controller as? UICollectionViewDelegate
-        self.collectionView.dataSource = controller as? UICollectionViewDataSource
+    public func delegateCollectionView(delegate:UICollectionViewDelegate,dataSource:UICollectionViewDataSource){
+        self.collectionView.delegate = delegate
+        self.collectionView.dataSource = dataSource
     }
     
    private func setUpConstraints(){
