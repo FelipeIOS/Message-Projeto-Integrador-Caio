@@ -10,6 +10,7 @@ import UIKit
 protocol ActionButtonsRegisterScreenProtocol:class{
     func actionAlterarImagem()
     func actionRegisterUser()
+    func actionPopRegister()
 }
 
 class RegisterScreen: UIView {
@@ -21,7 +22,13 @@ class RegisterScreen: UIView {
         self.delegate = delegate
     }
     
-    
+   lazy var backBtn:UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.setImage(UIImage(named: "back"), for: .normal)
+    btn.addTarget(self, action: #selector(self.tappedPopButton), for: .touchUpInside)
+        return btn
+    }()
     
     lazy var imageAddUser:UIImageView = {
      let image = UIImageView()
@@ -104,6 +111,7 @@ class RegisterScreen: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor(red: 24/255, green: 117/255, blue: 104/255, alpha: 1.0)
+        self.addSubview(self.backBtn)
         self.addSubview(self.imageAddUser)
         self.addSubview(self.addImageButton)
         self.addSubview(self.nameTextField)
@@ -117,6 +125,7 @@ class RegisterScreen: UIView {
     func configTextFields(){
         self.passwordTextField.delegate = self
         self.emailTextField.delegate = self
+        self.nameTextField.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -131,6 +140,10 @@ class RegisterScreen: UIView {
         self.delegate?.actionRegisterUser()
     }
     
+    @objc func tappedPopButton(){
+        self.delegate?.actionPopRegister()
+    }
+    
     func setImageUser(image:UIImage){
         self.imageAddUser.image = image
     }
@@ -138,6 +151,7 @@ class RegisterScreen: UIView {
 
    private func setUpConstraints(){
         NSLayoutConstraint.activate([
+            
             self.imageAddUser.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: CGFloat(20)),
             self.imageAddUser.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: CGFloat(110)),
             self.imageAddUser.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: CGFloat(-110)),
@@ -146,7 +160,11 @@ class RegisterScreen: UIView {
             self.addImageButton.topAnchor.constraint(equalTo: self.imageAddUser.bottomAnchor, constant: CGFloat(12)),
             self.addImageButton.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: CGFloat(20)),
             self.addImageButton.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: CGFloat(-20)),
-//            self.addImageButton.heightAnchor.constraint(equalToConstant: CGFloat(20)),
+            
+            self.backBtn.topAnchor.constraint(equalTo: self.imageAddUser.topAnchor),
+            self.backBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: CGFloat(20)),
+            self.backBtn.heightAnchor.constraint(equalToConstant: 40),
+            self.backBtn.widthAnchor.constraint(equalToConstant: 40),
             
             self.nameTextField.topAnchor.constraint(equalTo: self.addImageButton.bottomAnchor, constant: CGFloat(15)),
             self.nameTextField.leadingAnchor.constraint(equalTo: self.addImageButton.leadingAnchor),
@@ -171,7 +189,7 @@ class RegisterScreen: UIView {
     }
     
     func validadeTextFields() -> Bool{
-        if self.emailTextField.text != "" && self.passwordTextField.text != "" && self.passwordTextField.text != ""{
+        if self.emailTextField.text != "" && self.nameTextField.text != "" && self.passwordTextField.text != ""{
             return true
         }else{
             return false

@@ -33,6 +33,9 @@
 		0443F40825E18FE700C76A17 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0443F40725E18FE700C76A17 /* GoogleService-Info.plist */; };
 		0443F42625E28B1D00C76A17 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443F42525E28B1D00C76A17 /* RegisterViewController.swift */; };
 		0443F42D25E28C7700C76A17 /* RegisterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443F42C25E28C7700C76A17 /* RegisterScreen.swift */; };
+		04C4315A25E348610053B4E8 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4315925E348610053B4E8 /* Alert.swift */; };
+		04C4316025E349100053B4E8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4315F25E349100053B4E8 /* LoginViewController.swift */; };
+		04C4316525E3493C0053B4E8 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4316425E3493C0053B4E8 /* LoginScreen.swift */; };
 		690DC7E12D9ED25430DEE693 /* Pods_Message.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF1F8B83072CAF2392AEC96 /* Pods_Message.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +68,9 @@
 		0443F40725E18FE700C76A17 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0443F42525E28B1D00C76A17 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		0443F42C25E28C7700C76A17 /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
+		04C4315925E348610053B4E8 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		04C4315F25E349100053B4E8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		04C4316425E3493C0053B4E8 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		0F6246886F3154474FD93269 /* Pods-Message.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Message.release.xcconfig"; path = "Target Support Files/Pods-Message/Pods-Message.release.xcconfig"; sourceTree = "<group>"; };
 		50DF905FA7CCAA483E27B1F6 /* Pods-Message.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Message.debug.xcconfig"; path = "Target Support Files/Pods-Message/Pods-Message.debug.xcconfig"; sourceTree = "<group>"; };
 		FFF1F8B83072CAF2392AEC96 /* Pods_Message.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Message.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +127,7 @@
 		0404C55F25DAE86A00AE3C05 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				04C4315E25E348FE0053B4E8 /* Login */,
 				0443F42425E28B0400C76A17 /* Register */,
 				0443F42325E28AF700C76A17 /* Message */,
 			);
@@ -169,6 +176,8 @@
 		0404C57C25DAEF1700AE3C05 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				04C4316325E349220053B4E8 /* Login */,
+				04C4315C25E348660053B4E8 /* Alert */,
 				0443F42F25E28C8000C76A17 /* Register */,
 				0443F42925E28C1500C76A17 /* Message */,
 			);
@@ -276,6 +285,30 @@
 				0443F42C25E28C7700C76A17 /* RegisterScreen.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		04C4315C25E348660053B4E8 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				04C4315925E348610053B4E8 /* Alert.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		04C4315E25E348FE0053B4E8 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				04C4315F25E349100053B4E8 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		04C4316325E349220053B4E8 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				04C4316425E3493C0053B4E8 /* LoginScreen.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		6BA495402D9853A43026C520 /* Frameworks */ = {
@@ -413,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C4316025E349100053B4E8 /* LoginViewController.swift in Sources */,
 				0404C56F25DAE8C700AE3C05 /* Custom.swift in Sources */,
 				0443F24725DC047E00C76A17 /* MessageListCollectionViewCell.swift in Sources */,
 				0443F3E325E17C1D00C76A17 /* IncomingTextMessageTableViewCell.swift in Sources */,
@@ -421,6 +455,7 @@
 				0443F42D25E28C7700C76A17 /* RegisterScreen.swift in Sources */,
 				0404C54925DAE50300AE3C05 /* MessageListViewController.swift in Sources */,
 				0443F3E825E17D4400C76A17 /* OutgoingTextMessageTableViewCell.swift in Sources */,
+				04C4316525E3493C0053B4E8 /* LoginScreen.swift in Sources */,
 				0404C54F25DAE50300AE3C05 /* Message.xcdatamodeld in Sources */,
 				0404C54525DAE50300AE3C05 /* AppDelegate.swift in Sources */,
 				0443F42625E28B1D00C76A17 /* RegisterViewController.swift in Sources */,
@@ -431,6 +466,7 @@
 				0443F3D825E178AC00C76A17 /* ChatViewController.swift in Sources */,
 				0404C57E25DAEF3800AE3C05 /* MessageListNavigationView.swift in Sources */,
 				0404C56E25DAE8C700AE3C05 /* MessageModel.swift in Sources */,
+				04C4315A25E348610053B4E8 /* Alert.swift in Sources */,
 				0443F24F25DC065800C76A17 /* CustomImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

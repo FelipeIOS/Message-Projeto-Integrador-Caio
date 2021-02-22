@@ -17,7 +17,6 @@ class RegisterViewController: UIViewController {
     override func loadView() {
         self.registerScreen = RegisterScreen()
         self.view = registerScreen
-        
     }
     
     
@@ -43,6 +42,10 @@ class RegisterViewController: UIViewController {
 }
 
 extension RegisterViewController:ActionButtonsRegisterScreenProtocol{
+    
+    func actionPopRegister() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     func actionAlterarImagem() {
         self.imagePicker.sourceType = .photoLibrary
@@ -100,9 +103,7 @@ extension RegisterViewController:ActionButtonsRegisterScreenProtocol{
                     }
                         
                      print(mensagemErro)
-//                    let alerta = AlertaView.init(titulo: "Dados Inválidos", mensagem: mensagemErro)
-//                    self.present(alerta.getAlerta(), animated: true, completion: nil)
-                    
+                     Alert.init(controller: self).getAlerta(mensagem: mensagemErro)
                 }
         }
         

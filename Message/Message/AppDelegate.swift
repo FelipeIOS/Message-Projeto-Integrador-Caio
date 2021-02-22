@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         let window = UIWindow(frame: UIScreen.main.bounds)
 //        let VC = MessageListViewController()
-        let VC = RegisterViewController()
+//        let VC = RegisterViewController()
+        let VC = LoginViewController()
         let navVC = UINavigationController(rootViewController: VC)
         window.rootViewController = navVC
         self.window = window
