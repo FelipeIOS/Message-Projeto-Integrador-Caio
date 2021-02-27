@@ -14,9 +14,15 @@ class RegisterViewController: UIViewController {
     var registerScreen:RegisterScreen?
     var imagePicker:UIImagePickerController = UIImagePickerController()
     var firestore:Firestore?
+    var alert:Alert?
+    
     override func loadView() {
         self.registerScreen = RegisterScreen()
         self.view = registerScreen
+    }
+    
+    private func configAlert(){
+        self.alert = Alert(controller: self)
     }
     
     
@@ -103,7 +109,7 @@ extension RegisterViewController:ActionButtonsRegisterScreenProtocol{
                     }
                         
                      print(mensagemErro)
-                     Alert.init(controller: self).getAlerta(mensagem: mensagemErro)
+                self.alert?.getAlerta(mensagem: mensagemErro)
                 }
         }
         

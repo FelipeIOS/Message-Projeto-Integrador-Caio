@@ -25,11 +25,12 @@ class MessageListViewController: UIViewController {
     var db: Firestore?
     var idUsuarioLogado: String?
     var listaContatos: [Dictionary<String, Any>] = []
-    var list:Contact = []
+    var listContact:[Contact] = []
     var homeScreen:HomeMessageScreen?
     var screenContact:Bool?
-    var contato:Contato?
+    var contato:ContatoController?
     var emailUsuarioLogado:String?
+    var alert:Alert?
     
     override func loadView() {
         self.homeScreen = HomeMessageScreen()
@@ -38,16 +39,21 @@ class MessageListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
-        view.backgroundColor = CustomColor.appLight
+        self.navigationController?.navigationBar.isHidden = true
+        self.view.backgroundColor = CustomColor.appLight
         self.homeScreen?.navView.delegate(delegate: self)
-        self.configTableView()
+        self.configCollectionView()
         self.configAdentifierFirebase()
         self.configContato()
+        self.configAlert()
+    }
+    
+    private func configAlert(){
+        self.alert = Alert(controller: self)
     }
     
     private func configContato(){
-        self.contato = Contato()
+        self.contato = ContatoController()
         self.contato?.delegate(delegate: self)
     }
     
@@ -62,13 +68,12 @@ class MessageListViewController: UIViewController {
         }
     }
     
-    private func configTableView(){
+    private func configCollectionView(){
         self.homeScreen?.delegateCollectionView(delegate: self, dataSource: self)
     }
     
     func getContatos(){
-        
-        self.listaContatos.removeAll()
+        self.listContact.removeAll()
         self.db?.collection("usuarios")
             .document( idUsuarioLogado ?? "" )
             .collection("contatos")
@@ -79,7 +84,7 @@ class MessageListViewController: UIViewController {
                 if let snapshot = snapshotResultado {
                     for document in snapshot.documents {
                         let dadosContato = document.data()
-                        self.listaContatos.append(dadosContato)
+                        self.listContact.append(Contact(dicionario: dadosContato))
                     }
                     self.homeScreen?.reloadCollection()
                 }
@@ -91,7 +96,7 @@ extension MessageListViewController:UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if screenContact ?? false{
-            return self.listaContatos.count + 1
+            return self.listContact.count + 1
         }else{
             return self.messageData.count
         }
@@ -99,16 +104,12 @@ extension MessageListViewController:UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if screenContact ?? false{
-            if indexPath.row == self.listaContatos.count{
+            if indexPath.row == self.listContact.count{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageLastCollectionViewCell.identifier, for: indexPath) as? MessageLastCollectionViewCell
                 return cell ?? UICollectionViewCell()
             }else{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageListCollectionViewCell.identifier, for: indexPath) as? MessageListCollectionViewCell
-    
-                let dados = self.listaContatos[indexPath.row]
-                let nome = dados["nome"] as? String
-                let imagem = dados["urlImagem"] as? String
-                cell?.setupView(username: nome ?? "", imageUser: imagem ?? "")
+                cell?.setupView(contact: self.listContact[indexPath.row])
                 return cell ?? UICollectionViewCell()
             }
             
@@ -136,14 +137,19 @@ extension MessageListViewController:UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if screenContact ?? false{
-            if indexPath.row == self.listaContatos.count{
-                Alert.init(controller: self).addContact {value in
+            if indexPath.row == self.listContact.count{
+                self.alert?.addContact {value in
                     self.contato?.addContact(email: value, emailUsuarioLogado:self.emailUsuarioLogado ?? "", idUsuario: self.idUsuarioLogado ?? "")
                 }
+            }else{
+                let VC:ChatViewController = ChatViewController()
+                VC.contato = self.listContact[indexPath.row]
+                self.navigationController?.pushViewController(VC, animated: true)
             }
         }else{
-            let VC = ChatViewController()
-            navigationController?.pushViewController(VC, animated: true)
+//            let VC:ChatViewController = ChatViewController()
+//
+//            self.navigationController?.pushViewController(VC, animated: true)
         }
     }
     
@@ -172,12 +178,13 @@ extension MessageListViewController:MessageListNavigationViewProtocol{
 }
 
 extension MessageListViewController:ContatoProtocol{
+    
     func alertStateError(titulo: String, message: String) {
-        Alert.init(controller: self).getAlerta(titulo: titulo, mensagem: message, completion: nil)
+        self.alert?.getAlerta(titulo: titulo, mensagem: message, completion: nil)
     }
     
     func successContato() {
-        Alert.init(controller: self).getAlerta(titulo: "Ebaaaaa", mensagem: "Usuario cadastrado com sucesso :)") {
+        self.alert?.getAlerta(titulo: "Ebaaaaa", mensagem: "Usuario cadastrado com sucesso :)") {
             self.getContatos()
         }
     }

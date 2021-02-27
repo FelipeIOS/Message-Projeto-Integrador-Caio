@@ -16,7 +16,7 @@ protocol ContatoProtocol:class {
 
 
 
-class Contato{
+class ContatoController{
     
     weak var delegate:ContatoProtocol?
     
@@ -55,18 +55,17 @@ class Contato{
     
     
     func salvarContato(dadosContato: Dictionary<String,Any>, idUsuario:String){
-     if let idUsuarioContato = dadosContato["id"] {
+        let contact:Contact = Contact(dicionario: dadosContato)
         let firestore:Firestore = Firestore.firestore()
         firestore.collection("usuarios")
                    .document( idUsuario )
                    .collection("contatos")
-                   .document( String(describing: idUsuarioContato) )
+                   .document(contact.id ?? "")
                        .setData(dadosContato) { (erro) in
                            if erro == nil {
                            self.delegate?.successContato()
                 }
             }
-        }
     }
     
     

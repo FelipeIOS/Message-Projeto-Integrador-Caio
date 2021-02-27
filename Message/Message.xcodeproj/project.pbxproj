@@ -33,7 +33,7 @@
 		0443F40825E18FE700C76A17 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0443F40725E18FE700C76A17 /* GoogleService-Info.plist */; };
 		0443F42625E28B1D00C76A17 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443F42525E28B1D00C76A17 /* RegisterViewController.swift */; };
 		0443F42D25E28C7700C76A17 /* RegisterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443F42C25E28C7700C76A17 /* RegisterScreen.swift */; };
-		0495EA1425E7A0A100EC417D /* Contato.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495EA1325E7A0A100EC417D /* Contato.swift */; };
+		0495EA1425E7A0A100EC417D /* ContatoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495EA1325E7A0A100EC417D /* ContatoController.swift */; };
 		0495EA1725E8072B00EC417D /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495EA1625E8072B00EC417D /* ChatView.swift */; };
 		049F99F325E5E268009F1EEF /* MessageLastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049F99F225E5E268009F1EEF /* MessageLastCollectionViewCell.swift */; };
 		049F99F825E718FE009F1EEF /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049F99F725E718FE009F1EEF /* Contact.swift */; };
@@ -72,7 +72,7 @@
 		0443F40725E18FE700C76A17 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0443F42525E28B1D00C76A17 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		0443F42C25E28C7700C76A17 /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
-		0495EA1325E7A0A100EC417D /* Contato.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contato.swift; sourceTree = "<group>"; };
+		0495EA1325E7A0A100EC417D /* ContatoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContatoController.swift; sourceTree = "<group>"; };
 		0495EA1625E8072B00EC417D /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		049F99F225E5E268009F1EEF /* MessageLastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLastCollectionViewCell.swift; sourceTree = "<group>"; };
 		049F99F725E718FE009F1EEF /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 				04C4315E25E348FE0053B4E8 /* Login */,
 				0443F42425E28B0400C76A17 /* Register */,
 				0443F42325E28AF700C76A17 /* Message */,
-				0495EA1325E7A0A100EC417D /* Contato.swift */,
+				0495EA1325E7A0A100EC417D /* ContatoController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -482,7 +482,7 @@
 				0404C57E25DAEF3800AE3C05 /* MessageListNavigationView.swift in Sources */,
 				0404C56E25DAE8C700AE3C05 /* MessageModel.swift in Sources */,
 				04C4315A25E348610053B4E8 /* Alert.swift in Sources */,
-				0495EA1425E7A0A100EC417D /* Contato.swift in Sources */,
+				0495EA1425E7A0A100EC417D /* ContatoController.swift in Sources */,
 				0443F24F25DC065800C76A17 /* CustomImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

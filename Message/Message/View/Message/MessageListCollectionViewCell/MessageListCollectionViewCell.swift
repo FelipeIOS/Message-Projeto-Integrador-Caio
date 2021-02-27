@@ -92,8 +92,8 @@ class MessageListCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func setupView(username:String,imageUser:String){
-        self.setUserName(userName: username)
+    func setupView(contact:Contact){
+        self.setUserName(userName: contact.nome ?? "")
     }
     
     func manageData(){

@@ -11,7 +11,7 @@ class OutgoingTextMessageTableViewCell: UITableViewCell {
    
     static let identifier:String = "OutgoingTextMessageTableViewCell"
     
-    var data:Messages?{
+    var data:Message?{
         didSet{
             self.manageData()
         }
@@ -70,16 +70,16 @@ class OutgoingTextMessageTableViewCell: UITableViewCell {
         ])
     }
     
-    func setMessageDetailAttributedText(){
-        guard let data = self.data else {return}
-        let attributedText = NSMutableAttributedString(string:"\(data.time ?? "")" , attributes:[NSAttributedString.Key.font: UIFont(name:CustomFont.poppinsMedium, size: 12) ?? UIFont(),NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        self.messageDetail.attributedText = attributedText
-    }
+//    func setMessageDetailAttributedText(){
+//        guard let data = self.data else {return}
+//        let attributedText = NSMutableAttributedString(string:"\(data.time ?? "")" , attributes:[NSAttributedString.Key.font: UIFont(name:CustomFont.poppinsMedium, size: 12) ?? UIFont(),NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+//        self.messageDetail.attributedText = attributedText
+//    }
     
     func manageData(){
         guard let data = self.data else {return}
-        self.messageTextLabel.text = data.message
-        self.setMessageDetailAttributedText()
+        self.messageTextLabel.text = data.texto ?? ""
+//        self.setMessageDetailAttributedText()
     }
     
     required init?(coder: NSCoder) {

@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class Alert{
+    
     var controller:UIViewController
     
     init(controller:UIViewController) {

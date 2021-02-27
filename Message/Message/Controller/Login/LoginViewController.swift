@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
         self.configLoginScreen()
         let autenticacao = Auth.auth()
           autenticacao.addStateDidChangeListener { (autenticacao, usuario) in
+            print(usuario?.email)
             if usuario != nil{
             let VC = MessageListViewController()
             let navVC = UINavigationController(rootViewController: VC)

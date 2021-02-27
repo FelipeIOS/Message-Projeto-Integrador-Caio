@@ -8,7 +8,18 @@
 import UIKit
 import AVFoundation
 
+
+protocol ChatViewProtocol:class{
+    func actionPushMessage()
+}
+
 class ChatView: UIView {
+
+    weak var delegate:ChatViewProtocol?
+    
+    public func delegate(delegate:ChatViewProtocol){
+        self.delegate = delegate
+    }
 
     var bottomConstraint: NSLayoutConstraint?
     var player: AVAudioPlayer?
@@ -50,6 +61,7 @@ class ChatView: UIView {
     
     lazy var inputMessageTextField:UITextField = {
         let tf = UITextField()
+        tf.delegate = self
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "to write"
         tf.font = UIFont(name: CustomFont.poppinsBold, size: 14)
@@ -136,72 +148,33 @@ class ChatView: UIView {
     }
     
   
-    
     @objc func sendBtnPressed(){
         self.sendBtn.touchAnimation(s: sendBtn)
         self.playSound()
-        let message = Messages(messageType: "text", sentBy: "", time: "20/08/2020", image: nil, message: self.inputMessageTextField.text, isIncoming: false)
-//        self.messageData.insert(message, at: 0)
-        self.tableView.beginUpdates()
-        let index = IndexPath(row: 0, section: 0)
-        self.tableView.insertRows(at: [index], with: .right)
-        self.tableView.endUpdates()
-        self.inputMessageTextField.text = ""
-        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-        self.sendBtn.isEnabled = false
-        self.sendBtn.layer.opacity = 0.4
-        self.sendBtn.transform = .init(scaleX: 0.8, y: 0.8)
+        self.delegate?.actionPushMessage()
+        self.startPushMessage()
     }
     
-    func configTextField(delegate:UITextFieldDelegate){
-        self.inputMessageTextField.delegate = delegate
+    public func startPushMessage(){
+              self.inputMessageTextField.text = ""
+//              self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+              self.sendBtn.isEnabled = false
+              self.sendBtn.layer.opacity = 0.4
+              self.sendBtn.transform = .init(scaleX: 0.8, y: 0.8)
     }
+    
     
     func configTableView(delegate:UITableViewDelegate,dataSource:UITableViewDataSource){
         self.tableView.delegate = delegate
         self.tableView.dataSource = dataSource
     }
     
+    func reloadTableView(){
+        self.tableView.reloadData()
+    }
+    
     func configNavView(controller:ChatViewController){
         self.navView.controller = controller
-    }
-    
-}
-
-extension ChatView:UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return messageData.count
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if self.messageData[indexPath.row].messageType == "text"{
-//            if self.messageData[indexPath.row].isIncoming == true {
-//                let cell = tableView.dequeueReusableCell(withIdentifier: "IncomingTextMessageTableViewCell", for: indexPath) as? IncomingTextMessageTableViewCell
-//                cell?.transform = CGAffineTransform(scaleX: 1, y: -1)
-//                cell?.data = messageData[indexPath.row]
-//                cell?.selectionStyle = .none
-//                return cell ?? UITableViewCell()
-//            } else {
-//                let cell = tableView.dequeueReusableCell(withIdentifier: "OutgoingTextMessageTableViewCell", for: indexPath) as? OutgoingTextMessageTableViewCell
-//                cell?.transform = CGAffineTransform(scaleX: 1, y: -1)
-//                cell?.data = messageData[indexPath.row]
-//                cell?.selectionStyle = .none
-//                return cell ?? UITableViewCell()
-//            }
-//        }
-        return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if messageData[indexPath.row].messageType == "text"{
-//            let desc = messageData[indexPath.row].message
-//            let font = UIFont(name: CustomFont.poppinsSemiBold, size: 14) ?? UIFont()
-//            let estimatedH = desc?.heightWithConstrainedWidth(width: 220, font: font)
-//            return CGFloat(65 + (estimatedH ?? CGFloat()))
-//        }
-        return CGFloat()
     }
     
     @objc func handleKeyboardNotification(notification: NSNotification){
@@ -219,9 +192,7 @@ extension ChatView:UITableViewDelegate, UITableViewDataSource {
             UIView.animate(withDuration:0.1, delay: 0 , options: .curveEaseOut , animations: {
                 self.layoutIfNeeded()
             } , completion: {(completed) in
-
-                if isKeyboardShowing{
-                }
+                //Config!!!!!
             })
         }
     }
@@ -238,6 +209,7 @@ extension ChatView:UITableViewDelegate, UITableViewDataSource {
             print(error.localizedDescription)
         }
     }
+    
 }
 
 extension ChatView:UITextFieldDelegate{

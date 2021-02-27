@@ -23,3 +23,16 @@ struct Messages{
     var message:String?
     var isIncoming:Bool?
 }
+
+class Message {
+    
+    var texto: String?
+    var idUsuario: String?
+    var urlImagem: String?
+    
+    init (dicionario:[String:Any]) {
+        self.texto = dicionario["texto"] as? String
+        self.idUsuario = dicionario["idUsuario"] as? String
+        self.urlImagem = dicionario["urlImagem"] as? String
+    }
+}
