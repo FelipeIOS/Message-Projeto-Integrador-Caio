@@ -107,11 +107,6 @@ extension RegisterViewController:ActionButtonsRegisterScreenProtocol{
                 }
         }
         
-        
-//        let VC = MessageListViewController()
-//        let navVC = UINavigationController(rootViewController: VC)
-//        navVC.modalPresentationStyle = .fullScreen
-//        self.present(navVC, animated: true, completion: nil)
     }
     
 }

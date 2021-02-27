@@ -22,6 +22,7 @@ class HomeMessageScreen: UIView {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.showsVerticalScrollIndicator = false
         cv.register(MessageListCollectionViewCell.self, forCellWithReuseIdentifier:MessageListCollectionViewCell.identifier )
+        cv.register(MessageLastCollectionViewCell.self, forCellWithReuseIdentifier: MessageLastCollectionViewCell.identifier)
         cv.backgroundColor = .clear
         cv.setCollectionViewLayout(layout, animated: false)
         cv.delaysContentTouches = false
@@ -42,6 +43,10 @@ class HomeMessageScreen: UIView {
     public func delegateCollectionView(delegate:UICollectionViewDelegate,dataSource:UICollectionViewDataSource){
         self.collectionView.delegate = delegate
         self.collectionView.dataSource = dataSource
+    }
+    
+    public func reloadCollection(){
+        self.collectionView.reloadData()
     }
     
    private func setUpConstraints(){

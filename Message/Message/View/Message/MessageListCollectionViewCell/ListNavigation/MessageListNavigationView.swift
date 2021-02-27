@@ -7,7 +7,23 @@
 
 import UIKit
 
+enum TypeConversationOrContact{
+    case conversation
+    case contact
+}
+
+protocol MessageListNavigationViewProtocol:class{
+    func typeScreenMessage(type:TypeConversationOrContact)
+}
+
 class MessageListNavigationView: UIView {
+    
+    
+    weak var delegate:MessageListNavigationViewProtocol?
+    
+    func delegate(delegate:MessageListNavigationViewProtocol){
+        self.delegate = delegate
+    }
     
     let navBackView:UIView = {
         let v = UIView()
@@ -62,17 +78,21 @@ class MessageListNavigationView: UIView {
         return sv
     }()
     
-    let contactButton:UIButton = {
+   lazy var conversationButton:UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setImage(UIImage(named: "group"), for: .normal)
+        btn.setImage(UIImage(named: "star")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = .systemPink
+        btn.addTarget(self, action: #selector(self.tappedConversationRegister), for: .touchUpInside)
         return btn
     }()
     
-    let favoriteButton:UIButton = {
+   lazy var contactButton:UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setImage(UIImage(named: "star"), for: .normal)
+        btn.setImage(UIImage(named: "group")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = .black
+        btn.addTarget(self, action: #selector(self.tappedContactButton), for: .touchUpInside)
         return btn
     }()
     
@@ -82,8 +102,8 @@ class MessageListNavigationView: UIView {
         navBackView.addSubview(navBar)
         navBar.addSubview(searchBar)
         navBar.addSubview(stackView)
+        stackView.addArrangedSubview(conversationButton)
         stackView.addArrangedSubview(contactButton)
-        stackView.addArrangedSubview(favoriteButton)
         searchBar.addSubview(searchLabel)
         searchBar.addSubview(searchBtn)
         setUpConstraints()
@@ -123,9 +143,17 @@ class MessageListNavigationView: UIView {
     
     //MARK: - Actions
     
+    @objc func tappedConversationRegister(){
+        self.delegate?.typeScreenMessage(type: .conversation)
+        self.conversationButton.tintColor = .systemPink
+        self.contactButton.tintColor = .black
+    }
     
-    
-    
+    @objc func tappedContactButton(){
+        self.delegate?.typeScreenMessage(type: .contact)
+        self.contactButton.tintColor = .systemPink
+        self.conversationButton.tintColor = .black
+    }
     
     
     required init?(coder: NSCoder) {

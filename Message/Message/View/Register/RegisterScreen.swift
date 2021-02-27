@@ -153,8 +153,8 @@ class RegisterScreen: UIView {
         NSLayoutConstraint.activate([
             
             self.imageAddUser.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: CGFloat(20)),
-            self.imageAddUser.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: CGFloat(110)),
-            self.imageAddUser.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: CGFloat(-110)),
+            self.imageAddUser.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.imageAddUser.widthAnchor.constraint(equalToConstant: self.heightImageUser),
             self.imageAddUser.heightAnchor.constraint(equalToConstant: self.heightImageUser),
             
             self.addImageButton.topAnchor.constraint(equalTo: self.imageAddUser.bottomAnchor, constant: CGFloat(12)),

@@ -92,8 +92,12 @@ class MessageListCollectionViewCell: UICollectionViewCell {
         ])
     }
     
+    func setupView(username:String,imageUser:String){
+        self.setUserName(userName: username)
+    }
+    
     func manageData(){
-        guard let data = data else {return}
+        guard let data = self.data else {return}
         customImageView.setupCustomImageView(messageList: data)
         self.setUserNameAttributedText()
         self.dateLabel.text = data.date
@@ -110,10 +114,16 @@ class MessageListCollectionViewCell: UICollectionViewCell {
     }
     
     func setUserNameAttributedText(){
-        guard let data = data else {return}
+        guard let data = self.data else {return}
         let attributedText = NSMutableAttributedString(string:"\(data.userName ?? "")" , attributes:[NSAttributedString.Key.font: UIFont(name:CustomFont.poppinsMedium, size: 16) ?? UIFont(),NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         attributedText.append(NSAttributedString(string: "\n\(data.lastMessage ?? "")" , attributes:[NSAttributedString.Key.font: UIFont(name:CustomFont.poppinsMedium, size: 14) ?? UIFont(), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
+        
+        self.userName.attributedText = attributedText
+    }
+    
+    func setUserName(userName:String){
+        let attributedText = NSMutableAttributedString(string:userName, attributes:[NSAttributedString.Key.font: UIFont(name:CustomFont.poppinsMedium, size: 16) ?? UIFont(),NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
         self.userName.attributedText = attributedText
     }
