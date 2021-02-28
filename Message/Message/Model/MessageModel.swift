@@ -36,3 +36,17 @@ class Message {
         self.urlImagem = dicionario["urlImagem"] as? String
     }
 }
+
+class Conversa {
+    var nome: String?
+    var ultimaMensagem: String?
+    var urlFotoUsuario: String?
+    var idDestinatario: String?
+    
+    init (dicionario:[String:Any]) {
+        self.nome = dicionario["nomeUsuario"] as? String
+        self.ultimaMensagem = dicionario["ultimaMensagem"] as? String
+        self.urlFotoUsuario = dicionario["urlFotoUsuario"] as? String
+        self.idDestinatario = dicionario["idDestinatario"] as? String
+    }
+}

@@ -11,7 +11,7 @@ class CustomImageView: UIView {
 
     let imageView:UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "prof-img4")
+        img.image = UIImage(named: "imagem-perfil")
         img.translatesAutoresizingMaskIntoConstraints = false
         img.contentMode = .scaleAspectFill
         img.clipsToBounds = true
@@ -34,14 +34,14 @@ class CustomImageView: UIView {
         super.init(frame: frame)
         addSubview(self.imageView)
         self.imageView.pin(to: self)
-        addSubview(indicatorView)
+        addSubview(self.indicatorView)
         self.setUpConstraints()
     }
     
     
-   public func setupCustomImageView(messageList:MessageList){
-        self.imageView.image = UIImage(named: messageList.userImage ?? "")
-        self.indicatorView.isHidden = messageList.userState ?? true
+   public func setupCustomImageView(messageList:Conversa){
+    self.imageView.image = UIImage(named:"imagem-perfil")
+        self.indicatorView.isHidden = true
     }
     
   private func setUpConstraints(){

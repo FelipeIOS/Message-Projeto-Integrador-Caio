@@ -30,11 +30,6 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         self.firestore = Firestore.firestore()
         self.configRegisterScreen()
-        self.configImagePicker()
-    }
-    
-    func configImagePicker(){
-        self.imagePicker.delegate = self
     }
     
     func configRegisterScreen(){
@@ -51,11 +46,6 @@ extension RegisterViewController:ActionButtonsRegisterScreenProtocol{
     
     func actionPopRegister() {
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    func actionAlterarImagem() {
-        self.imagePicker.sourceType = .photoLibrary
-        self.present(self.imagePicker, animated: true, completion: nil)
     }
     
     func actionRegisterUser() {
@@ -75,6 +65,7 @@ extension RegisterViewController:ActionButtonsRegisterScreenProtocol{
                         "nome": nome,
                         "email": email,
                         "id": idUsuario
+                        
                     ])
                 }
             }else{
@@ -113,16 +104,6 @@ extension RegisterViewController:ActionButtonsRegisterScreenProtocol{
                 }
         }
         
-    }
-    
-}
-
-extension RegisterViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate{
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let imagemRecuparada = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        self.registerScreen?.setImageUser(image: imagemRecuparada ?? UIImage())
-        picker.dismiss(animated: true, completion: nil)
     }
     
 }

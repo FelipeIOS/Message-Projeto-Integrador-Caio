@@ -8,14 +8,13 @@
 import UIKit
 
 protocol ActionButtonsRegisterScreenProtocol:class{
-    func actionAlterarImagem()
     func actionRegisterUser()
     func actionPopRegister()
 }
 
 class RegisterScreen: UIView {
     
-    var heightImageUser:CGFloat = 200
+    var heightImageUser:CGFloat = 150
     weak var delegate:ActionButtonsRegisterScreenProtocol?
     
     func delegate(delegate:ActionButtonsRegisterScreenProtocol){
@@ -32,24 +31,12 @@ class RegisterScreen: UIView {
     
     lazy var imageAddUser:UIImageView = {
      let image = UIImageView()
-     image.image = UIImage(named: "prof-img2")
-     image.clipsToBounds = true
-        image.contentMode = .scaleAspectFill
-     image.layer.cornerRadius = self.heightImageUser / 2
+     image.image = UIImage(named: "usuario")
+        image.contentMode = .scaleAspectFit
      image.translatesAutoresizingMaskIntoConstraints = false
       return image
     }()
-    
-    lazy var addImageButton:UIButton = {
-      let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Adicionar Foto", for: .normal)
-        button.titleLabel?.font = UIFont(name: CustomFont.poppinsBold, size: 16)
-        button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(self.tappedAddPhotoButton), for: .touchUpInside)
-        return button
-    }()
-    
+        
     lazy var emailTextField:UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
@@ -113,7 +100,6 @@ class RegisterScreen: UIView {
         self.backgroundColor = UIColor(red: 24/255, green: 117/255, blue: 104/255, alpha: 1.0)
         self.addSubview(self.backBtn)
         self.addSubview(self.imageAddUser)
-        self.addSubview(self.addImageButton)
         self.addSubview(self.nameTextField)
         self.addSubview(self.emailTextField)
         self.addSubview(self.passwordTextField)
@@ -132,20 +118,12 @@ class RegisterScreen: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func tappedAddPhotoButton(){
-        self.delegate?.actionAlterarImagem()
-    }
-    
     @objc func tappedRegisterUserButton(){
         self.delegate?.actionRegisterUser()
     }
     
     @objc func tappedPopButton(){
         self.delegate?.actionPopRegister()
-    }
-    
-    func setImageUser(image:UIImage){
-        self.imageAddUser.image = image
     }
     
 
@@ -157,33 +135,29 @@ class RegisterScreen: UIView {
             self.imageAddUser.widthAnchor.constraint(equalToConstant: self.heightImageUser),
             self.imageAddUser.heightAnchor.constraint(equalToConstant: self.heightImageUser),
             
-            self.addImageButton.topAnchor.constraint(equalTo: self.imageAddUser.bottomAnchor, constant: CGFloat(12)),
-            self.addImageButton.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: CGFloat(20)),
-            self.addImageButton.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: CGFloat(-20)),
-            
             self.backBtn.topAnchor.constraint(equalTo: self.imageAddUser.topAnchor),
             self.backBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: CGFloat(20)),
             self.backBtn.heightAnchor.constraint(equalToConstant: 40),
             self.backBtn.widthAnchor.constraint(equalToConstant: 40),
             
-            self.nameTextField.topAnchor.constraint(equalTo: self.addImageButton.bottomAnchor, constant: CGFloat(15)),
-            self.nameTextField.leadingAnchor.constraint(equalTo: self.addImageButton.leadingAnchor),
-            self.nameTextField.trailingAnchor.constraint(equalTo: self.addImageButton.trailingAnchor),
+            self.nameTextField.topAnchor.constraint(equalTo: self.imageAddUser.bottomAnchor, constant: CGFloat(15)),
+            self.nameTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: CGFloat(20)),
+            self.nameTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: CGFloat(-20)),
             self.nameTextField.heightAnchor.constraint(equalToConstant: CGFloat(45)),
             
             self.emailTextField.topAnchor.constraint(equalTo: self.nameTextField.bottomAnchor, constant: CGFloat(10)),
-            self.emailTextField.leadingAnchor.constraint(equalTo: self.addImageButton.leadingAnchor),
-            self.emailTextField.trailingAnchor.constraint(equalTo: self.addImageButton.trailingAnchor),
+            self.emailTextField.leadingAnchor.constraint(equalTo: self.nameTextField.leadingAnchor),
+            self.emailTextField.trailingAnchor.constraint(equalTo: self.nameTextField.trailingAnchor),
             self.emailTextField.heightAnchor.constraint(equalTo: self.nameTextField.heightAnchor),
             
             self.passwordTextField.topAnchor.constraint(equalTo: self.emailTextField.bottomAnchor, constant: CGFloat(10)),
-            self.passwordTextField.leadingAnchor.constraint(equalTo: self.addImageButton.leadingAnchor),
-            self.passwordTextField.trailingAnchor.constraint(equalTo: self.addImageButton.trailingAnchor),
+            self.passwordTextField.leadingAnchor.constraint(equalTo: self.nameTextField.leadingAnchor),
+            self.passwordTextField.trailingAnchor.constraint(equalTo: self.nameTextField.trailingAnchor),
             self.passwordTextField.heightAnchor.constraint(equalTo: self.nameTextField.heightAnchor),
             
             self.registerUserButton.topAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: CGFloat(10)),
-            self.registerUserButton.leadingAnchor.constraint(equalTo: self.addImageButton.leadingAnchor),
-            self.registerUserButton.trailingAnchor.constraint(equalTo: self.addImageButton.trailingAnchor),
+            self.registerUserButton.leadingAnchor.constraint(equalTo: self.nameTextField.leadingAnchor),
+            self.registerUserButton.trailingAnchor.constraint(equalTo: self.nameTextField.trailingAnchor),
             self.registerUserButton.heightAnchor.constraint(equalTo: self.nameTextField.heightAnchor)
         ])
     }

@@ -22,7 +22,7 @@ class MessageListCollectionViewCell: UICollectionViewCell {
     
     static let identifier:String = "MessageListCollectionViewCell"
     
-    var data:MessageList?{
+    var data:Conversa?{
         didSet {
             self.manageData()
         }
@@ -55,6 +55,7 @@ class MessageListCollectionViewCell: UICollectionViewCell {
         v.translatesAutoresizingMaskIntoConstraints = false
         v.backgroundColor = CustomColor.appPink
         v.layer.cornerRadius = 8
+        v.isHidden = true
         return v
     }()
     
@@ -100,13 +101,13 @@ class MessageListCollectionViewCell: UICollectionViewCell {
         guard let data = self.data else {return}
         customImageView.setupCustomImageView(messageList: data)
         self.setUserNameAttributedText()
-        self.dateLabel.text = data.date
-        if data.pending ?? false{
-            self.pendingMessageView.isHidden = false
-            self.pendingLabel.text = data.pendingCount
-        } else {
-            self.pendingMessageView.isHidden = true
-        }
+//        self.dateLabel.text = data.date
+//        if data.pending ?? false{
+//            self.pendingMessageView.isHidden = false
+//            self.pendingLabel.text = data.pendingCount
+//        } else {
+//            self.pendingMessageView.isHidden = true
+//        }
     }
     
     required init?(coder: NSCoder) {
@@ -115,9 +116,9 @@ class MessageListCollectionViewCell: UICollectionViewCell {
     
     func setUserNameAttributedText(){
         guard let data = self.data else {return}
-        let attributedText = NSMutableAttributedString(string:"\(data.userName ?? "")" , attributes:[NSAttributedString.Key.font: UIFont(name:CustomFont.poppinsMedium, size: 16) ?? UIFont(),NSAttributedString.Key.foregroundColor: UIColor.darkGray])
+        let attributedText = NSMutableAttributedString(string:"\(data.nome ?? "")" , attributes:[NSAttributedString.Key.font: UIFont(name:CustomFont.poppinsMedium, size: 16) ?? UIFont(),NSAttributedString.Key.foregroundColor: UIColor.darkGray])
         
-        attributedText.append(NSAttributedString(string: "\n\(data.lastMessage ?? "")" , attributes:[NSAttributedString.Key.font: UIFont(name:CustomFont.poppinsMedium, size: 14) ?? UIFont(), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
+        attributedText.append(NSAttributedString(string: "\n\(data.ultimaMensagem ?? "")" , attributes:[NSAttributedString.Key.font: UIFont(name:CustomFont.poppinsMedium, size: 14) ?? UIFont(), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
         
         self.userName.attributedText = attributedText
     }

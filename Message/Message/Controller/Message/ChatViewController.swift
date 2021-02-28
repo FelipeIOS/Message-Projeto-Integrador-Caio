@@ -34,7 +34,6 @@ class ChatViewController: UIViewController {
         self.view = chatView
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configChatView()

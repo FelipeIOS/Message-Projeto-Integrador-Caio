@@ -10,17 +10,7 @@ import Firebase
 import FirebaseFirestore
 
 class MessageListViewController: UIViewController {
-    
-    let messageData:[MessageList] = [
-        MessageList(userName: "Caio", lastMessage: "Teste Mensagem", userImage: "prof-img1", date: "10/08/2020", pending: true, pendingCount: "4", userState: true),
-        MessageList(userName: "Vitor", lastMessage: "Teste Mensagem", userImage: "prof-img2", date: "13/08/2020", pending: false, pendingCount: "0", userState: false),
-        MessageList(userName: "Alencar", lastMessage: "Teste Mensagem.", userImage: "prof-img3", date: "11/08/2020", pending: true, pendingCount: "7", userState: true),
-        MessageList(userName: "Barbara", lastMessage: "Teste Mensagem", userImage: "prof-img4", date: "15/08/2020", pending: false, pendingCount: "0", userState: false),
-        MessageList(userName: "Gabi", lastMessage: "Teste Mensagem", userImage: "prof-img5", date: "10/08/2020", pending: false, pendingCount: "0", userState: true),
-        MessageList(userName: "Daniel", lastMessage: "Teste Mensagem", userImage: "prof-img6", date: "19/08/2020", pending: false, pendingCount: "0", userState: false),
-        MessageList(userName: "Pedro", lastMessage: "Teste Mensagem", userImage: "prof-img7", date: "20/08/2020", pending: false, pendingCount: "0", userState: true)
-    ]
-    
+        
     var auth: Auth?
     var db: Firestore?
     var idUsuarioLogado: String?
@@ -31,6 +21,9 @@ class MessageListViewController: UIViewController {
     var contato:ContatoController?
     var emailUsuarioLogado:String?
     var alert:Alert?
+    var listaConversas: [Conversa] = []
+    var conversasListener: ListenerRegistration?
+    
     
     override func loadView() {
         self.homeScreen = HomeMessageScreen()
@@ -41,11 +34,38 @@ class MessageListViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         self.view.backgroundColor = CustomColor.appLight
-        self.homeScreen?.navView.delegate(delegate: self)
+        self.configHomeView()
         self.configCollectionView()
         self.configAdentifierFirebase()
         self.configContato()
         self.configAlert()
+        self.addListenerRecuperarConversa()
+    }
+    
+    private func configHomeView(){
+        self.homeScreen?.navView.delegate(delegate: self)
+        self.homeScreen?.delegate(delegate: self)
+    }
+    
+    func addListenerRecuperarConversa(){
+        
+        if let idUsuarioLogado = auth?.currentUser?.uid{
+            self.conversasListener = db?.collection("conversas").document(idUsuarioLogado).collection("ultimas_conversas").addSnapshotListener { (querSnapshot, erro) in
+              
+                if erro == nil{
+                     
+                    self.listaConversas.removeAll()
+                    
+                    if let snapshot = querSnapshot{
+                        for document in snapshot.documents{
+                            let dados = document.data()
+                            self.listaConversas.append(Conversa(dicionario: dados))
+                        }
+                        self.homeScreen?.reloadCollection()
+                    }
+                }
+            }
+        }
     }
     
     private func configAlert(){
@@ -98,7 +118,7 @@ extension MessageListViewController:UICollectionViewDelegate, UICollectionViewDa
         if screenContact ?? false{
             return self.listContact.count + 1
         }else{
-            return self.messageData.count
+            return self.listaConversas.count
         }
     }
     
@@ -115,7 +135,7 @@ extension MessageListViewController:UICollectionViewDelegate, UICollectionViewDa
             
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageListCollectionViewCell.identifier, for: indexPath) as? MessageListCollectionViewCell
-            cell?.data = self.messageData[indexPath.row]
+            cell?.data = self.listaConversas[indexPath.row]
             return cell ?? UICollectionViewCell()
         }
     }
@@ -147,9 +167,11 @@ extension MessageListViewController:UICollectionViewDelegate, UICollectionViewDa
                 self.navigationController?.pushViewController(VC, animated: true)
             }
         }else{
-//            let VC:ChatViewController = ChatViewController()
-//
-//            self.navigationController?.pushViewController(VC, animated: true)
+            let VC:ChatViewController = ChatViewController()
+            let dados = self.listaConversas[indexPath.row]
+            let contato:Contact = Contact(id: dados.idDestinatario ?? "", nome: dados.nome ?? "", urlImagem: dados.urlFotoUsuario ?? "")
+            VC.contato = contato
+            self.navigationController?.pushViewController(VC, animated: true)
         }
     }
     
@@ -168,10 +190,15 @@ extension MessageListViewController:MessageListNavigationViewProtocol{
     func typeScreenMessage(type: TypeConversationOrContact) {
         switch type {
         case .contact:
+            
             self.screenContact = true
             self.getContatos()
+            self.conversasListener?.remove()
+            
         case .conversation:
+            
             self.screenContact = false
+            self.addListenerRecuperarConversa()
             self.homeScreen?.reloadCollection()
         }
     }
@@ -190,4 +217,12 @@ extension MessageListViewController:ContatoProtocol{
     }
 
 
+}
+
+extension MessageListViewController:HomeMessageScreenProtocol{
+    
+    func actionConfigUser() {
+        print("action")
+    }
+    
 }

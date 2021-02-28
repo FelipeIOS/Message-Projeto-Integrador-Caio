@@ -70,7 +70,7 @@ class ChatNavigationView: UIView {
     let customImage:CustomImageView = {
         let img = CustomImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
-        img.imageView.image = UIImage(named: "prof-img2")
+        img.imageView.image = UIImage(named: "imagem-perfil")
         return img
     }()
     
