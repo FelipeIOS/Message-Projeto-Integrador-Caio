@@ -35,6 +35,8 @@
 		0443F42D25E28C7700C76A17 /* RegisterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0443F42C25E28C7700C76A17 /* RegisterScreen.swift */; };
 		0495EA1425E7A0A100EC417D /* ContatoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495EA1325E7A0A100EC417D /* ContatoController.swift */; };
 		0495EA1725E8072B00EC417D /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495EA1625E8072B00EC417D /* ChatView.swift */; };
+		04975D1A25EC1AF400304EBC /* DetailUserScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04975D1925EC1AF400304EBC /* DetailUserScreen.swift */; };
+		04975D1F25EC20C400304EBC /* DetailUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04975D1E25EC20C400304EBC /* DetailUserViewController.swift */; };
 		049F99F325E5E268009F1EEF /* MessageLastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049F99F225E5E268009F1EEF /* MessageLastCollectionViewCell.swift */; };
 		049F99F825E718FE009F1EEF /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049F99F725E718FE009F1EEF /* Contact.swift */; };
 		04C4315A25E348610053B4E8 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4315925E348610053B4E8 /* Alert.swift */; };
@@ -74,6 +76,8 @@
 		0443F42C25E28C7700C76A17 /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
 		0495EA1325E7A0A100EC417D /* ContatoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContatoController.swift; sourceTree = "<group>"; };
 		0495EA1625E8072B00EC417D /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		04975D1925EC1AF400304EBC /* DetailUserScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserScreen.swift; sourceTree = "<group>"; };
+		04975D1E25EC20C400304EBC /* DetailUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUserViewController.swift; sourceTree = "<group>"; };
 		049F99F225E5E268009F1EEF /* MessageLastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageLastCollectionViewCell.swift; sourceTree = "<group>"; };
 		049F99F725E718FE009F1EEF /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		04C4315925E348610053B4E8 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 		0404C55F25DAE86A00AE3C05 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				04975D1D25EC20A300304EBC /* DetailUser */,
 				04C4315E25E348FE0053B4E8 /* Login */,
 				0443F42425E28B0400C76A17 /* Register */,
 				0443F42325E28AF700C76A17 /* Message */,
@@ -185,6 +190,7 @@
 		0404C57C25DAEF1700AE3C05 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				04975D1825EC1AB800304EBC /* Detail User */,
 				04C4316325E349220053B4E8 /* Login */,
 				04C4315C25E348660053B4E8 /* Alert */,
 				0443F42F25E28C8000C76A17 /* Register */,
@@ -297,6 +303,22 @@
 				0443F42C25E28C7700C76A17 /* RegisterScreen.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		04975D1825EC1AB800304EBC /* Detail User */ = {
+			isa = PBXGroup;
+			children = (
+				04975D1925EC1AF400304EBC /* DetailUserScreen.swift */,
+			);
+			path = "Detail User";
+			sourceTree = "<group>";
+		};
+		04975D1D25EC20A300304EBC /* DetailUser */ = {
+			isa = PBXGroup;
+			children = (
+				04975D1E25EC20C400304EBC /* DetailUserViewController.swift */,
+			);
+			path = DetailUser;
 			sourceTree = "<group>";
 		};
 		04C4315C25E348660053B4E8 /* Alert */ = {
@@ -468,6 +490,7 @@
 				0404C56D25DAE8C700AE3C05 /* UIView.swift in Sources */,
 				0443F42D25E28C7700C76A17 /* RegisterScreen.swift in Sources */,
 				0404C54925DAE50300AE3C05 /* MessageListViewController.swift in Sources */,
+				04975D1A25EC1AF400304EBC /* DetailUserScreen.swift in Sources */,
 				0443F3E825E17D4400C76A17 /* OutgoingTextMessageTableViewCell.swift in Sources */,
 				04C4316525E3493C0053B4E8 /* LoginScreen.swift in Sources */,
 				0404C54F25DAE50300AE3C05 /* Message.xcdatamodeld in Sources */,
@@ -483,6 +506,7 @@
 				0404C56E25DAE8C700AE3C05 /* MessageModel.swift in Sources */,
 				04C4315A25E348610053B4E8 /* Alert.swift in Sources */,
 				0495EA1425E7A0A100EC417D /* ContatoController.swift in Sources */,
+				04975D1F25EC20C400304EBC /* DetailUserViewController.swift in Sources */,
 				0443F24F25DC065800C76A17 /* CustomImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

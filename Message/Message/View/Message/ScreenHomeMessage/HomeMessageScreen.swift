@@ -43,9 +43,9 @@ class HomeMessageScreen: UIView {
     lazy var ajustesButton:UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-//        var image = UIImage(named: "ajustes")
-//        image?.withTintColor(.black, renderingMode: .alwaysTemplate)
-//        button.setImage(image, for: .normal)
+        var image = UIImage(named: "ajustes")
+        image?.withTintColor(.black, renderingMode: .alwaysTemplate)
+        button.setImage(image, for: .normal)
         button.backgroundColor = .lightGray
         button.clipsToBounds = true
         button.layer.cornerRadius = self.heightAndWidthButton/2
