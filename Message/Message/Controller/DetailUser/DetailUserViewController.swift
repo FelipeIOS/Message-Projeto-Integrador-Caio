@@ -19,11 +19,30 @@ class DetailUserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.detailScreen?.delegate(delegate: self)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
 
     }
     
 
   
 
+}
+
+
+extension DetailUserViewController: DetailUserScreenProtocol{
+    
+    
+    func actionSairConta() {
+        print("sair da conta")
+    }
+    
+    func actionEditPhoto(image: UIImage?) {
+        print("actionEditPhoto")
+    }
+    
+    func actionBackButton() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }

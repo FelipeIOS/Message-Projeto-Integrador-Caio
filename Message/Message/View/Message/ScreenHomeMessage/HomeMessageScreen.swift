@@ -94,7 +94,7 @@ class HomeMessageScreen: UIView {
             self.collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
             self.ajustesButton.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: CGFloat(-20)),
-            self.ajustesButton.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: CGFloat(-25)),
+            self.ajustesButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: CGFloat(-25)),
             self.ajustesButton.heightAnchor.constraint(equalToConstant: self.heightAndWidthButton),
             self.ajustesButton.widthAnchor.constraint(equalToConstant: self.heightAndWidthButton)
         ])

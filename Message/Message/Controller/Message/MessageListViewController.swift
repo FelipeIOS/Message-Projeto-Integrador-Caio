@@ -222,7 +222,8 @@ extension MessageListViewController:ContatoProtocol{
 extension MessageListViewController:HomeMessageScreenProtocol{
     
     func actionConfigUser() {
-        print("action")
+        let VC:DetailUserViewController = DetailUserViewController()
+        self.navigationController?.pushViewController(VC, animated: true)
     }
     
 }
