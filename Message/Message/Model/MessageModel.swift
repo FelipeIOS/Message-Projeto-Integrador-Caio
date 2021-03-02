@@ -50,3 +50,16 @@ class Conversa {
         self.idDestinatario = dicionario["idDestinatario"] as? String
     }
 }
+
+
+class User {
+    var nome: String?
+    var email: String?
+    var urlFotoUsuario: String?
+    
+    init (dicionario:[String:Any]) {
+        self.nome = dicionario["nome"] as? String
+        self.email = dicionario["email"] as? String
+        self.urlFotoUsuario = dicionario["urlImagem"] as? String
+    }
+}
