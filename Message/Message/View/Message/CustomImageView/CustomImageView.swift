@@ -11,7 +11,6 @@ class CustomImageView: UIView {
 
     let imageView:UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "imagem-perfil")
         img.translatesAutoresizingMaskIntoConstraints = false
         img.contentMode = .scaleAspectFill
         img.clipsToBounds = true
@@ -39,10 +38,17 @@ class CustomImageView: UIView {
     }
     
     
-   public func setupCustomImageView(messageList:Conversa){
-    self.imageView.image = UIImage(named:"imagem-perfil")
+   public func setupCustomImageView(messageList:String?){
+                                  
+    if  messageList == nil || messageList == ""{
+        self.imageView.image = UIImage(named: "imagem-perfil")
+    }else{
+        self.imageView.sd_setImage(with: URL(string: messageList ?? ""), completed: nil)
+    }
         self.indicatorView.isHidden = true
     }
+    
+    
     
   private func setUpConstraints(){
         NSLayoutConstraint.activate([

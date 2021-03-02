@@ -36,8 +36,8 @@ class ChatViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configChatView()
         self.configDataFireBase()
+        self.configChatView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,11 +60,11 @@ class ChatViewController: UIViewController {
         }
         
         //Configura título da tela
-        if let nome = contato?.nome{
+        if let nome = self.contato?.nome{
             self.nomeContato = nome
         }
         
-        if let url = contato?.urlImage {
+        if let url = self.contato?.urlImage {
             self.urlFotoContato = url
         }
     }
@@ -86,6 +86,7 @@ class ChatViewController: UIViewController {
         self.chatView?.configNavView(controller: self)
         self.chatView?.configTableView(delegate: self, dataSource: self)
         self.chatView?.delegate(delegate: self)
+        self.chatView?.addImageNavView(value: self.urlFotoContato)
     }
     
     @objc func backBtnPressed(){
@@ -148,9 +149,8 @@ extension ChatViewController:UITableViewDelegate, UITableViewDataSource {
         
         let indice = indexPath.row
         let dados = self.listaMensagens[indice]
-//        let texto = dados.texto ?? ""
         let idUsuario = dados.idUsuario ?? ""
-//        let urlImagem = dados.urlImagem ?? ""
+
         
         
         if self.idUsuarioLogado != idUsuario {

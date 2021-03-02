@@ -43,7 +43,6 @@ class MessageListCollectionViewCell: UICollectionViewCell {
     
     let dateLabel:UILabel = {
         let l = UILabel()
-        l.text = "10/03/2020"
         l.translatesAutoresizingMaskIntoConstraints = false
         l.font = UIFont(name: CustomFont.poppinsMedium, size: 13)
         l.textColor = .lightGray
@@ -95,19 +94,13 @@ class MessageListCollectionViewCell: UICollectionViewCell {
     
     func setupView(contact:Contact){
         self.setUserName(userName: contact.nome ?? "")
+        self.customImageView.setupCustomImageView(messageList: contact.urlImage)
     }
     
     func manageData(){
         guard let data = self.data else {return}
-        customImageView.setupCustomImageView(messageList: data)
+        self.customImageView.setupCustomImageView(messageList: data.urlFotoUsuario)
         self.setUserNameAttributedText()
-//        self.dateLabel.text = data.date
-//        if data.pending ?? false{
-//            self.pendingMessageView.isHidden = false
-//            self.pendingLabel.text = data.pendingCount
-//        } else {
-//            self.pendingMessageView.isHidden = true
-//        }
     }
     
     required init?(coder: NSCoder) {

@@ -33,7 +33,9 @@ class LoginScreen: UIView {
     lazy var emailTextField:UITextField = {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.autocorrectionType = UITextAutocorrectionType.no
         tf.backgroundColor = .white
+        tf.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         tf.layer.borderWidth = 1.5
         tf.layer.cornerRadius = 7.5
         tf.layer.borderColor = UIColor.lightGray.cgColor
@@ -48,12 +50,14 @@ class LoginScreen: UIView {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.backgroundColor = .white
+        tf.autocorrectionType = UITextAutocorrectionType.no
+        tf.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         tf.clipsToBounds = true
         tf.layer.borderWidth = 1.5
         tf.layer.cornerRadius = 7.5
         tf.layer.borderColor = UIColor.lightGray.cgColor
         tf.placeholder = "Senha"
-//        tf.isSecureTextEntry = true
+        tf.isSecureTextEntry = true
         tf.font = UIFont(name: CustomFont.poppinsBold, size: 14)
         tf.textColor = .darkGray
         return tf

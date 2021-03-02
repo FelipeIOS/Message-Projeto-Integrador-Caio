@@ -48,6 +48,8 @@ class RegisterScreen: UIView {
         tf.placeholder = "Email"
         tf.font = UIFont(name: CustomFont.poppinsBold, size: 14)
         tf.textColor = .darkGray
+        tf.autocorrectionType = UITextAutocorrectionType.no
+        tf.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         return tf
     }()
     
@@ -62,6 +64,8 @@ class RegisterScreen: UIView {
         tf.placeholder = "Nome"
         tf.font = UIFont(name: CustomFont.poppinsBold, size: 14)
         tf.textColor = .darkGray
+        tf.autocorrectionType = UITextAutocorrectionType.no
+        tf.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         return tf
     }()
     
@@ -74,9 +78,11 @@ class RegisterScreen: UIView {
         tf.layer.cornerRadius = 7.5
         tf.layer.borderColor = UIColor.lightGray.cgColor
         tf.placeholder = "Senha"
-//        tf.isSecureTextEntry = true
+        tf.isSecureTextEntry = true
         tf.font = UIFont(name: CustomFont.poppinsBold, size: 14)
         tf.textColor = .darkGray
+        tf.autocorrectionType = UITextAutocorrectionType.no
+        tf.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         return tf
     }()
     

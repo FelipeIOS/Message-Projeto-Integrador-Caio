@@ -81,7 +81,7 @@ class MessageListNavigationView: UIView {
    lazy var conversationButton:UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setImage(UIImage(named: "star")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.setImage(UIImage(systemName: "message")?.withRenderingMode(.alwaysTemplate), for: .normal)
         btn.tintColor = .systemPink
         btn.addTarget(self, action: #selector(self.tappedConversationRegister), for: .touchUpInside)
         return btn

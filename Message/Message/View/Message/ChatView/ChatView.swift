@@ -157,7 +157,6 @@ class ChatView: UIView {
     
     public func startPushMessage(){
               self.inputMessageTextField.text = ""
-//              self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
               self.sendBtn.isEnabled = false
               self.sendBtn.layer.opacity = 0.4
               self.sendBtn.transform = .init(scaleX: 0.8, y: 0.8)
@@ -175,6 +174,10 @@ class ChatView: UIView {
     
     func configNavView(controller:ChatViewController){
         self.navView.controller = controller
+    }
+    
+    func addImageNavView(value:String?){
+        self.navView.addImageNavigationView(value: value)
     }
     
     @objc func handleKeyboardNotification(notification: NSNotification){

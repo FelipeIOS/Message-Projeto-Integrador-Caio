@@ -108,12 +108,14 @@ class DetailUserScreen: UIView {
         self.nameLabel.text = user.nome ?? ""
         self.emailLabel.text = user.email ?? ""
         
-        if let urlImagem = user.urlFotoUsuario{
-            self.imageUser.sd_setImage(with: URL(string: urlImagem), completed: nil)
-        }else{
+        if user.urlFotoUsuario == nil || user.urlFotoUsuario == "" {
             self.imageUser.image = UIImage(named: "imagem-perfil")
+        }else{
+            self.imageUser.sd_setImage(with: URL(string:user.urlFotoUsuario ?? ""), completed: nil)
         }
     }
+    
+    
     
     
     public func addImageUser(image:UIImage?){

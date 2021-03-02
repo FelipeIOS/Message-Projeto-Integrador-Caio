@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ChatNavigationView: UIView {
 
@@ -70,7 +71,6 @@ class ChatNavigationView: UIView {
     let customImage:CustomImageView = {
         let img = CustomImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
-        img.imageView.image = UIImage(named: "imagem-perfil")
         return img
     }()
     
@@ -123,6 +123,15 @@ class ChatNavigationView: UIView {
         ])
     }
     
+    public func addImageNavigationView(value:String?){
+        if value == nil || value == ""{
+            self.customImage.imageView.image = UIImage(named: "imagem-perfil")
+        }else{
+            self.customImage.imageView.sd_setImage(with: URL(string: value ?? ""), completed: nil)
+        }
+    }
+    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

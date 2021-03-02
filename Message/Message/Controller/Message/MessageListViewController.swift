@@ -130,6 +130,7 @@ extension MessageListViewController:UICollectionViewDelegate, UICollectionViewDa
             }else{
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageListCollectionViewCell.identifier, for: indexPath) as? MessageListCollectionViewCell
                 cell?.setupView(contact: self.listContact[indexPath.row])
+                
                 return cell ?? UICollectionViewCell()
             }
             
